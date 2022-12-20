@@ -1,6 +1,6 @@
 # Python CICFlowMeter + GOOSE
 
-> This project is aimed to the capture of GOOSE (Generic Object Oriented Substation Event) packets detailed by the IEC61850 standard. The basis to build this application is take from this cloned from [Python Wrapper CICflowmeter](https://github.com/datthinh1801/cicflowmeter). Furthermore, the application was modified to custom the needs for the cibersecurity project from the GITA research group.
+> This project is aimed to the capture of GOOSE (Generic Object Oriented Substation Event) packets detailed by the IEC61850 standard. The basis to build this application is take from this cloned from [Python Wrapper CICflowmeter](https://github.com/datthinh1801/cicflowmeter). Furthermore, the application was modified to custom the needs for the Cibersecurity project from the GITA research group from the University of Antioquia.
 
 
 ### Installation
@@ -37,3 +37,5 @@ cicflowmeter -i eth0 -c flows.csv
 ```
 
 - Reference: https://www.unb.ca/cic/research/applications.html#CICFlowMeter
+
+- Contact: santiago.riosg@udea.edu.co 
