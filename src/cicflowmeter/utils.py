@@ -28,11 +28,13 @@ def get_statistics(alist: list):
         iat["min"] = min(alist)
         iat["mean"] = numpy.mean(alist)
         iat["std"] = numpy.sqrt(numpy.var(alist))
+        iat["median"] = numpy.median(alist)
     else:
         iat["total"] = 0
         iat["max"] = 0
         iat["min"] = 0
         iat["mean"] = 0
         iat["std"] = 0
+        iat["median"] = 0
 
     return iat

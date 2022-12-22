@@ -117,24 +117,26 @@ class Flow:
             # Count total packets by direction
             "tot_flow_pkts": packet_count.get_total(),            
             # Statistical info obtained from Packet lengths
-            "tot_len_fwd_pkts": packet_length.get_total(PacketDirection.FORWARD),
+            "tot_len_flow_pkts": packet_length.get_total(PacketDirection.FORWARD),
             "pkt_len_max": packet_length.get_max(),
             "pkt_len_min": packet_length.get_min(),
             "pkt_len_mean": float(packet_length.get_mean()),
             "pkt_len_std": float(packet_length.get_std()),
             "pkt_len_var": float(packet_length.get_var()),
+            "pkt_len_median": float(packet_length.get_median()),
+            # Statistical infor flow packet lengths
             "flow_header_len": flow_bytes.get_forward_header_bytes(),
             "flow_seg_size_min": flow_bytes.get_min_forward_header_bytes(),
-            "flow_act_data_pkts": packet_count.has_payload(PacketDirection.FORWARD),
+            #"flow_act_data_pkts": packet_count.has_payload(PacketDirection.FORWARD),
             # Flows Interarrival Time
             "flow_iat_max": float(flow_iat["max"]),
             "flow_iat_min": float(flow_iat["min"]),
             "flow_iat_mean": float(flow_iat["mean"]),
             "flow_iat_std": float(flow_iat["std"]),
+            "flow_iat_median": float(flow_iat["median"]),
             "flow_iat_tot": forward_iat["total"],
             # Response Time
             "pkt_size_avg": packet_length.get_avg(),
-            "init_fwd_win_byts": self.init_window_size[PacketDirection.FORWARD],            
             "active_max": float(active_stat["max"]),
             "active_min": float(active_stat["min"]),
             "active_mean": float(active_stat["mean"]),

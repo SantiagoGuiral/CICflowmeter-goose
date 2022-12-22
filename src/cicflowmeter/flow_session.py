@@ -7,7 +7,7 @@ from .features.context.packet_direction import PacketDirection
 from .features.context.packet_flow_key import get_packet_flow_key
 from .flow import Flow
 
-EXPIRED_UPDATE = 8 # seconds
+EXPIRED_UPDATE = 10 # seconds
 MACHINE_LEARNING_API = "http://localhost:8000/predict"
 GARBAGE_COLLECT_PACKETS = 100
 
