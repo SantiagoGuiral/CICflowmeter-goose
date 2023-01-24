@@ -41,48 +41,50 @@ class FlowSession(DefaultSession):
 
         packet_flow_key = get_packet_flow_key(packet, direction)
         flow = self.flows.get((packet_flow_key, count))
-        print("packet flow key", packet_flow_key)
         
-        self.packets_count += 1
-        print("Packet count", self.packets_count)
+        if packet_flow_key[3] != 'ErrorStructureDataSetPDU':
+            print("packet flow key", packet_flow_key)
+            
+            self.packets_count += 1
+            print("Packet count", self.packets_count)
 
-        # If there is no forward flow with a count of 0
-        if flow is None:
-            # There might be one of it in reverse
-            direction = PacketDirection.REVERSE
-            packet_flow_key = get_packet_flow_key(packet, direction)
-            flow = self.flows.get((packet_flow_key, count))
-
-        if flow is None:
-            # If no flow exists create a new flow
-            direction = PacketDirection.FORWARD
-            flow = Flow(packet, direction)
-            packet_flow_key = get_packet_flow_key(packet, direction)
-            self.flows[(packet_flow_key, count)] = flow
-
-        elif (packet.time - flow.latest_timestamp) > EXPIRED_UPDATE:
-            # If the packet exists in the flow but the packet is sent
-            # after too much of a delay than it is a part of a new flow.
-            expired = EXPIRED_UPDATE
-            while (packet.time - flow.latest_timestamp) > expired:
-                count += 1
-                expired += EXPIRED_UPDATE
+            # If there is no forward flow with a count of 0
+            if flow is None:
+                # There might be one of it in reverse
+                direction = PacketDirection.REVERSE
+                packet_flow_key = get_packet_flow_key(packet, direction)
                 flow = self.flows.get((packet_flow_key, count))
 
-                if flow is None:
-                    flow = Flow(packet, direction)
-                    self.flows[(packet_flow_key, count)] = flow
-                    break
+            if flow is None:
+                # If no flow exists create a new flow
+                direction = PacketDirection.FORWARD
+                flow = Flow(packet, direction)
+                packet_flow_key = get_packet_flow_key(packet, direction)
+                self.flows[(packet_flow_key, count)] = flow
 
-        flow.add_packet(packet, direction)
+            elif (packet.time - flow.latest_timestamp) > EXPIRED_UPDATE:
+                # If the packet exists in the flow but the packet is sent
+                # after too much of a delay than it is a part of a new flow.
+                expired = EXPIRED_UPDATE
+                while (packet.time - flow.latest_timestamp) > expired:
+                    count += 1
+                    expired += EXPIRED_UPDATE
+                    flow = self.flows.get((packet_flow_key, count))
 
-        if not self.url_model:
-            GARBAGE_COLLECT_PACKETS = 10000
+                    if flow is None:
+                        flow = Flow(packet, direction)
+                        self.flows[(packet_flow_key, count)] = flow
+                        break
 
-        if self.packets_count % GARBAGE_COLLECT_PACKETS == 0 or (
-            flow.duration > 120 and self.output_mode == "flow"
-        ):
-            self.garbage_collect(packet.time)
+            flow.add_packet(packet, direction)
+
+            if not self.url_model:
+                GARBAGE_COLLECT_PACKETS = 10000
+
+            if self.packets_count % GARBAGE_COLLECT_PACKETS == 0 or (
+                flow.duration > 120 and self.output_mode == "flow"
+            ):
+                self.garbage_collect(packet.time)
 
     def get_flows(self) -> list:
         return self.flows.values()

@@ -19,6 +19,12 @@ def get_packet_flow_key(packet, direction) -> tuple:
     Returns:
         A tuple with flow keys: src mac, dst mac, appid, gocbRef, stNum
     """
+
+    src_mac = '0.0.0.0.'
+    dest_mac = '0.0.0.0.'
+    appid = 0
+    gocbRef = 'ErrorStructureDataSetPDU'
+    stNum = 0
     
     if "TCP" in packet:
         return
@@ -28,8 +34,10 @@ def get_packet_flow_key(packet, direction) -> tuple:
     appid = get_appid(packet)
     pdu_data = get_goose_data(packet)
 
-    gocbRef = pdu_data['gocbRef']
-    stNum = pdu_data['stNum']
+    if pdu_data is not None:
+
+        gocbRef = pdu_data['gocbRef']
+        stNum = pdu_data['stNum']
         
     if direction == PacketDirection.FORWARD:
         dest_mac = packet["Ether"].dst

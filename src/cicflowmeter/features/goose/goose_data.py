@@ -91,12 +91,14 @@ def goose_pdu_decode(encoded_data):
             1
         )
     )
-
-    decoded_data, _ = decoder.decode(
-        encoded_data,
-        asn1Spec=g
-    )
-    return decoded_data
+    try:
+        decoded_data, _ = decoder.decode(
+            encoded_data,
+            asn1Spec=g
+        )
+        return decoded_data
+    except Exception:
+        return None
 
 def get_goose_data(packet):
 
@@ -105,13 +107,15 @@ def get_goose_data(packet):
 
     # Grab the Goose PDU for processing
     gpdu = d[GOOSEPDU].original
-
+    
     # Use PYASN1 to parse the Goose PDU
     gd = goose_pdu_decode(gpdu)
-    
-    data = get_gooseASN1_PDU(gd)
-    #data = get_gooseASN1_PDU_vendorA(gd)
-    return data
+    if gd is not None:
+        data = get_gooseASN1_PDU(gd)
+        #data = get_gooseASN1_PDU_vendorA(gd)
+        return data
+    else:
+        return None
 
 def get_appid(packet):
     p = packet.payload
@@ -130,21 +134,34 @@ def get_reserved(packet):
     return reserved
 
 def get_goose_data_pdu(packet):
+
+    timeAllowedtoLive = 0
+    datSet = 0
+    goID = 0 
+    test = 0
+    confRev = 0
+    ndsCom = 0
+    numDatSetEntries = 0
+
     pdu_data = get_goose_data(packet)
 
-    timeAllowedtoLive = pdu_data['timeAllowedtoLive']
-    datSet = pdu_data['datSet']
-    goID = pdu_data['goID']
-    test = pdu_data['test']
-    confRev = pdu_data['confRev']
-    ndsCom = pdu_data['ndsCom']
-    numDatSetEntries = pdu_data['numDatSetEntries']
+    if pdu_data is not None:
+        timeAllowedtoLive = pdu_data['timeAllowedtoLive']
+        datSet = pdu_data['datSet']
+        goID = pdu_data['goID']
+        test = pdu_data['test']
+        confRev = pdu_data['confRev']
+        ndsCom = pdu_data['ndsCom']
+        numDatSetEntries = pdu_data['numDatSetEntries']
 
     return timeAllowedtoLive,datSet, goID, test, confRev, ndsCom, numDatSetEntries
 
 def get_goose_sqNum(packet):
     pdu_data = get_goose_data(packet)
-    return pdu_data['sqNum']
+    if pdu_data is not None:
+        return pdu_data['sqNum']
+    else:
+        return 0
 
 def calculate_sqNum_norm(sqnum):
     if len(sqnum) != 1:
