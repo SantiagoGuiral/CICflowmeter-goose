@@ -5,7 +5,7 @@
 
 ### Installation
 ```sh
-https://github.com/SantiagoGuiral/CICflowmeter-goose.git
+https://github.com/SantiagoGuiral/GooseFlowMeter.git
 cd cicflowmeter
 python3 setup.py install
 ```
