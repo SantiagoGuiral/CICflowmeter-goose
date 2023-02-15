@@ -1,6 +1,10 @@
-# Python CICFlowMeter + GOOSE
+# GITA (Grupo de Investigación en Telecomunicaciones Aplicadas) 
 
-> This project is aimed to the capture of GOOSE (Generic Object Oriented Substation Event) packets detailed by the IEC61850 standard. The basis to build this application is take from this cloned from [Python Wrapper CICflowmeter](https://github.com/datthinh1801/cicflowmeter). Furthermore, the application was modified to custom the needs for the Cibersecurity project from the GITA research group from the University of Antioquia.
+This repository presents GooseFlowMeter, a flow generator modified to satisfy the needs of the GITA research group. This project takes the basis from [Python Wrapper CICflowmeter](https://github.com/datthinh1801/cicflowmeter) and [Goosestalker](https://github.com/cutaway-security/goosestalker/blob/main/README.md) to build a traffic generator capable of working with Goose traffic defined by the IEC61850 standard.
+
+## GooseFlowMeter
+
+GooseFlowMeter (CICFlowMeter + Goosestalker) is a project adapted to fulfill the needs of the cybersecurity project from the GITA research group at the Universidad de Antioquia. The application permits to capture Goose packets and joint them into flows to perform further analysis and traffic classification.
 
 
 ### Installation
@@ -36,6 +40,9 @@ Capture packets real-time from interface to flow csv: (**need root permission**)
 cicflowmeter -i eth0 -c flows.csv
 ```
 
+### References
+
 - Reference: https://www.unb.ca/cic/research/applications.html#CICFlowMeter
+- Reference: https://github.com/datthinh1801/cicflowmeter
 - Reference: https://github.com/cutaway-security/goosestalker
-- Contact: santiago.riosg@udea.edu.co 
+- Contact: Santiago Rios Guiral (santiago.riosg@udea.edu.co)
