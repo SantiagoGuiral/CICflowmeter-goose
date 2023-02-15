@@ -28,16 +28,16 @@ optional arguments:
   -c, --csv, --flow     output flows as csv
 ```
 
-Convert pcap file to flow csv:
+Generate CSV file from PCAP with Goose packets:
 
 ```
-cicflowmeter -f example.pcap -c flows.csv
+cicflowmeter -f goose.pcap -c goose_flows.csv
 ```
 
-Capture packets real-time from interface to flow csv: (**need root permission**)
+Capture Goose packets from network interface and convert them into CSV file (**need root permission**):
 
 ```
-cicflowmeter -i eth0 -c flows.csv
+cicflowmeter -i eth0 -c goose_flows.csv
 ```
 
 ### References
@@ -45,4 +45,7 @@ cicflowmeter -i eth0 -c flows.csv
 - Reference: https://www.unb.ca/cic/research/applications.html#CICFlowMeter
 - Reference: https://github.com/datthinh1801/cicflowmeter
 - Reference: https://github.com/cutaway-security/goosestalker
+
+### Contact
+
 - Contact: Santiago Rios Guiral (santiago.riosg@udea.edu.co)
