@@ -10,7 +10,7 @@ GooseFlowMeter (CICFlowMeter + Goosestalker) is a project adapted to fulfill the
 ### Installation
 ```sh
 https://github.com/SantiagoGuiral/GooseFlowMeter.git
-cd cicflowmeter
+cd gooseflowmeter
 python3 setup.py install
 ```
 
