@@ -16,7 +16,7 @@ python3 setup.py install
 
 ### Usage
 ```sh
-usage: cicflowmeter [-h] (-i INPUT_INTERFACE | -f INPUT_FILE) [-c] [-u URL_MODEL] output
+usage: gooseflowmeter [-h] (-i INPUT_INTERFACE | -f INPUT_FILE) [-c] [-u URL_MODEL] output
 
 positional arguments:
   output                output file name (in flow mode) or directory (in sequence mode)
@@ -31,13 +31,21 @@ optional arguments:
 Generate CSV file from PCAP with Goose packets:
 
 ```
+<<<<<<< HEAD
+gooseflowmeter -f goose.pcap -c goose_flows.csv
+=======
 cicflowmeter -f goose.pcap -c goose_flows.csv
+>>>>>>> 9852cda2124f90162274cd4375385abddb44db21
 ```
 
 Capture Goose packets from network interface and convert them into CSV file (**need root permission**):
 
 ```
+<<<<<<< HEAD
+gooseflowmeter -i eth0 -c goose_flows.csv
+=======
 cicflowmeter -i eth0 -c goose_flows.csv
+>>>>>>> 9852cda2124f90162274cd4375385abddb44db21
 ```
 
 ### References
