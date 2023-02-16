@@ -1,5 +1,8 @@
 Archive/
 __pycache__/
+build/
+dist/
+src/gooseflowmeter.egg-info
 venv/
 *.csv
 *.csv#

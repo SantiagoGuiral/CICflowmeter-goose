@@ -31,13 +31,21 @@ optional arguments:
 Generate CSV file from PCAP with Goose packets:
 
 ```
+<<<<<<< HEAD
 gooseflowmeter -f goose.pcap -c goose_flows.csv
+=======
+cicflowmeter -f goose.pcap -c goose_flows.csv
+>>>>>>> 9852cda2124f90162274cd4375385abddb44db21
 ```
 
 Capture Goose packets from network interface and convert them into CSV file (**need root permission**):
 
 ```
+<<<<<<< HEAD
 gooseflowmeter -i eth0 -c goose_flows.csv
+=======
+cicflowmeter -i eth0 -c goose_flows.csv
+>>>>>>> 9852cda2124f90162274cd4375385abddb44db21
 ```
 
 ### References
