@@ -6,11 +6,11 @@ import os
 from setuptools import find_packages, setup
 
 # Package meta-data.
-NAME = "cicflowmeter"
-DESCRIPTION = "CICFlowMeter V3 Python Implementation"
-URL = "https://gitlab.com/hieulw/cicflowmeter"
-EMAIL = "hieulw99@gmail.com"
-AUTHOR = "Le Hieu"
+NAME = "gooseflowmeter"
+DESCRIPTION = "GooseFlowMeter Adapts functionalities from CICFlowMeter and Goosestalker to further analyze Goose packets"
+URL = "GooseFlowMeter: https://github.com/grupogita/gooseflowmeter; CICFlowMeter: https://github.com/datthinh1801/cicflowmeter; Goosestalker: https://github.com/cutaway-security/goosestalker"
+EMAIL = "GooseFlowMeter: santiago.riosg@udea.edu.co; CICFlowMeter: hieulw99@gmail.com"
+AUTHOR = "GooseFlowMeter: Santiago Rios Guiral; CICFlowMeter: Le Hieu; Goosestalker: Keith Gray"
 REQUIRES_PYTHON = ">=3.7.0"
 VERSION = None
 
@@ -69,7 +69,7 @@ setup(
     # package_dir={"cicflowmeter": "src/cicflowmeter"},
     package_dir={"": "src"},
     entry_points={
-        "console_scripts": ["cicflowmeter=cicflowmeter.sniffer:main"],
+        "console_scripts": ["gooseflowmeter=gooseflowmeter.sniffer:main"],
     },
     install_requires=REQUIRED,
     include_package_data=True,
